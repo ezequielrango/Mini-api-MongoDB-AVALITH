@@ -10,50 +10,50 @@ mongoose.connect(url,{ // Retorna una promesa
 .catch(err => console.log(err));
 
 
-const alumnoSchema = mongoose.Schema({
-    name : String,
-    age: Number,
-    band: String
-},{versionKey:false})
+// const alumnoSchema = mongoose.Schema({
+//     name : String,
+//     age: Number,
+//     band: String
+// },{versionKey:false})
 
-const AlumnoModel = mongoose.model('alumnos', alumnoSchema); // Accede a la coleccion alumnos, y aplica alumnoSchema
+// const AlumnoModel = mongoose.model('alumnos', alumnoSchema); // Accede a la coleccion alumnos, y aplica alumnoSchema
 
-// Todos los alumnos
-async function getAllAlumnos(){
-    const alumnos = await AlumnoModel.find()
-    console.log(alumnos);
-}
-getAllAlumnos();
+// // Todos los alumnos
+// async function getAllAlumnos(){
+//     const alumnos = await AlumnoModel.find()
+//     console.log(alumnos);
+// }
+// getAllAlumnos();
 
-// Crear alumnos
+// // Crear alumnos
 
-async function createAlumnos(name, band, age){
+// async function createAlumnos(name, band, age){
 
-    const alumno = new AlumnoModel({
-        name,
-        age,
-        band
-    })
-    await alumno.save()
-}
+//     const alumno = new AlumnoModel({
+//         name,
+//         age,
+//         band
+//     })
+//     await alumno.save()
+// }
 
-// createAlumnos('Mila','Eminem', 20);
+// // createAlumnos('Mila','Eminem', 20);
 
-// Actualizar alumno
+// // Actualizar alumno
 
-const updateAlumno = async (id,newAlumno) => {
-    await AlumnoModel.updateOne({_id:id},{
-        $set: {
-            name: "Vanina",
-            age: "20" ,
-            band: "Super Junior"
-        }
-    })
-}
-updateAlumno('62e8118f69d7e86b59593416');
+// const updateAlumno = async (id,newAlumno) => {
+//     await AlumnoModel.updateOne({_id:id},{
+//         $set: {
+//             name: "Vanina",
+//             age: "20" ,
+//             band: "Super Junior"
+//         }
+//     })
+// }
+// updateAlumno('62e8118f69d7e86b59593416');
 
 
-async function deleteAlumno(id) {
-    await AlumnoModel.deleteOne({_id: id})
-}
-deleteAlumno('62e8118f69d7e86b59593416');
+// async function deleteAlumno(id) {
+//     await AlumnoModel.deleteOne({_id: id})
+// }
+// deleteAlumno('62e8118f69d7e86b59593416');

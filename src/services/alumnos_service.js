@@ -1,0 +1,1 @@
+const Alumno = require('../models/Alumno');
