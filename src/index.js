@@ -3,45 +3,19 @@ const app = express();
 const env = require('dotenv').config();
 const dbConnect = require('./database/dbConnect');
 const morganBody = require('morgan-body');
-
 dbConnect();
 
+
+app.listen(3000, () => console.log('Server listening 3000'))
 app.use(express.json());
 
 
 
-morganBody(app, {
-    noColors : true,
-});
+morganBody(app);
 
 
 
 app.use('/api',require("./v1/routes"));
-
-
-
-
-
-
-// const mongoose = require('mongoose');
-
-// const url = "mongodb://localhost/skill_factory";
-
-// mongoose.connect(url,{ // Retorna una promesa
-//     useNewUrlParser : true,
-//     useUnifiedTopology : true
-// })
-// .then(() => console.log("Database MongoDB connected"))
-// .catch(err => console.log(err));
-
-
-
-// // Todos los alumnos
-// async function getAllAlumnos(){
-//     const alumnos = await AlumnoModel.find()
-//     console.log(alumnos);
-// }
-// getAllAlumnos();
 
 // // Crear alumnos
 
