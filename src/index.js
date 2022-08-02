@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const env = require('dotenv').config();
-const dbConnect = require('./bin/dbConnect')
+const dbConnect = require('./database/dbConnect');
+const morganBody = require('morgan-body');
 
 dbConnect();
 
@@ -11,40 +12,29 @@ app.use(express.json());
 
 morganBody(app, {
     noColors : true,
-    stream: loggerStream,
-    // skip : function(req,res){
-    //     return res.statusCode < 400;
-    // },
 });
 
 
 
-app.use('/api',require("./routes"));
+app.use('/api',require("./v1/routes"));
 
 
 
 
 
 
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-const url = "mongodb://localhost/skill_factory";
+// const url = "mongodb://localhost/skill_factory";
 
-mongoose.connect(url,{ // Retorna una promesa
-    useNewUrlParser : true,
-    useUnifiedTopology : true
-})
-.then(() => console.log("Database MongoDB connected"))
-.catch(err => console.log(err));
+// mongoose.connect(url,{ // Retorna una promesa
+//     useNewUrlParser : true,
+//     useUnifiedTopology : true
+// })
+// .then(() => console.log("Database MongoDB connected"))
+// .catch(err => console.log(err));
 
 
-// const alumnoSchema = mongoose.Schema({
-//     name : String,
-//     age: Number,
-//     band: String
-// },{versionKey:false})
-
-// const AlumnoModel = mongoose.model('alumnos', alumnoSchema); // Accede a la coleccion alumnos, y aplica alumnoSchema
 
 // // Todos los alumnos
 // async function getAllAlumnos(){
@@ -85,3 +75,5 @@ mongoose.connect(url,{ // Retorna una promesa
 //     await AlumnoModel.deleteOne({_id: id})
 // }
 // deleteAlumno('62e8118f69d7e86b59593416');
+
+module.exports = app;

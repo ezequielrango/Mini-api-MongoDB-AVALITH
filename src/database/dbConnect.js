@@ -4,8 +4,13 @@ const mongoose = require('mongoose');
 
 const dbConnect = () => {
     
-    const uri = `mongodb+srv://${user}:${password}@cluster0.uqun4.mongodb.net/${name}?retryWrites=true&w=majority`
-    mongoose.connect(uri)
+    const url = "mongodb://localhost/skill_factory";
+
+    mongoose.connect(url, {
+        useNewUrlParser : true,
+        useUnifiedTopology : true
+    
+    })
        .then(()=> console.log(`Database connect: ${name}`))
        .catch(e => console.log(e));
 

@@ -2,35 +2,17 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const mongooseDelete = require('mongoose-delete');
 
+const alumnoSchema = mongoose.Schema({
+    name : String,
+    age: Number,
+    band: String
+},{versionKey:false})
 
-const userSchema = new Schema({
-    name : {
-        type: String
-    },
-    age : {
-        type: Number
-    },
-    email: {
-        type: String,
-        unique: true
-    },
-    password : {
-        type : String,
-        select:false, // en Res no devuelve password
-    },
-    role: {
-        type: ["user","admin"],
-        default : "user"
-    },
-},
-{
-    timestamps: true, // createAt, updateAt
-    versionKey: false
-}
-);
+// const AlumnoModel = mongoose.model('alumnos', alumnoSchema); // Accede a la coleccion alumnos, y aplica alumnoSchema
 
-userSchema.plugin(mongooseDelete, {overrideMethods : 'all'}); 
 
-const User = mongoose.model('User', userSchema,'user');
+alumnoSchema.plugin(mongooseDelete, {overrideMethods : 'all'}); 
 
-module.exports = User;
+const Alumno = mongoose.model('Alumno', alumnoSchema);
+
+module.exports = Alumno;
