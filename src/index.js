@@ -1,3 +1,31 @@
+const express = require('express');
+const app = express();
+const env = require('dotenv').config();
+const dbConnect = require('./bin/dbConnect')
+
+dbConnect();
+
+app.use(express.json());
+
+
+
+morganBody(app, {
+    noColors : true,
+    stream: loggerStream,
+    // skip : function(req,res){
+    //     return res.statusCode < 400;
+    // },
+});
+
+
+
+app.use('/api',require("./routes"));
+
+
+
+
+
+
 const mongoose = require('mongoose');
 
 const url = "mongodb://localhost/skill_factory";
